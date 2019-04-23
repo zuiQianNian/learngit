@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼状图</title>
+    <style>
+    @keyframes fill{
+        to{
+            stroke-dasharray: 628 628;
+        }
+    }
+    svg{
+        transform: rotate(-90deg);
+        background: rgb(142, 153, 120);
+     
+    }
+    circle{
+        animation: fill 10s linear infinite;
+    }
+    
+    </style>
+</head>
+<body>
+    <svg width='400' height='400' style="border:1px solid #ccc" viewBox="0 0 400 400">
+
+        <circle cx="200" cy="200" r="100" stroke="yellow"
+  stroke-width="200" fill="none" stroke-dasharray= '50 628' stroke-dashoffset='40'/>
+  <circle cx="200" cy="200" r="100" stroke="pink"
+  stroke-width="200" fill="none" stroke-dasharray= '200 628' stroke-dashoffset='100'/>
+  <circle cx="200" cy="200" r="100" stroke="red"
+  stroke-width="200" fill="none" stroke-dasharray= '250 628' stroke-dashoffset='-80'/>
+  <circle cx="200" cy="200" r="100" stroke="green"
+  stroke-width="200" fill="none" stroke-dasharray= '50 628' stroke-dashoffset='-50' />
+    </svg>
+</body>
+</html>

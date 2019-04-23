@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas progress</title>
+</head>
+<body>
+	<canvas id="process" width="300" height="300"></canvas>
+	<script>
+		(function (){
+			var c = document.getElementById('process'),
+				process = 0,
+				ctx = c.getContext('2d');
+ 
+			// 画灰色的圆
+			// ctx.beginPath();
+			// ctx.arc(150, 150, 90, 0, Math.PI*2);
+			// ctx.closePath();
+			// ctx.fillStyle = '#F6F6F6';
+			// ctx.fill();
+
+			// ctx.beginPath();
+			// ctx.arc(100, 100, 70, 0, Math.PI*2);
+			// // ctx.lineWidth = 10;
+			// ctx.closePath();
+			// ctx.fillStyle = 'green';
+			// ctx.fill();
+
+			ctx.beginPath();
+			ctx.arc(150, 150, 100, 0, Math.PI*2);
+			ctx.closePath();
+			ctx.fillStyle = 'green';
+			ctx.lineWidth = 5;
+			ctx.stroke()
+			ctx.fill();
+ 
+			function animate(){
+				requestAnimationFrame(function (){
+					process = process + 1;
+					drawCricle(ctx, process);
+					if (process < 100) {
+						animate();
+					}
+				});
+			}
+ 
+			function drawCricle(ctx, percent){
+				// 画进度环
+				ctx.beginPath();
+				ctx.moveTo(150, 150);  
+				ctx.arc(150, 150, 100, Math.PI * 1.5, Math.PI * (1.5 + 2 * percent / 100 ));
+				ctx.closePath();
+				ctx.fillStyle = 'yellow';
+				ctx.fill();
+ 
+				// 画内填充圆
+				ctx.beginPath();
+				ctx.arc(150, 150, 80, 0, Math.PI * 2);
+				ctx.closePath();
+				ctx.fillStyle = '#fff';
+				ctx.fill();
+ 
+				// 填充文字
+				ctx.font = "bold 20pt Microsoft YaHei"; 
+				ctx.fillStyle = '#333';
+				ctx.textAlign = 'center';  
+				ctx.textBaseline = 'middle';  
+				ctx.moveTo(150, 150);  
+				ctx.fillText(process + '%', 150, 150);
+			}
+ 
+			animate();
+		}());
+	</script>
+</body>
+
+</html>

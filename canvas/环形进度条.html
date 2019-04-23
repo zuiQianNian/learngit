@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>形进度条并显示数字百分比</title>
+<style>
+#mycanvas{
+    background-color: #ccc;
+}
+
+</style>
+</head>
+<body>
+<canvas id='mycanvas' width="400" height="400" style="border:2px solid red;"></canvas>
+
+<script>
+
+
+
+    var c = document.getElementById('mycanvas');
+    var ctx = c.getContext('2d');
+    // ctx.beginPath();
+    // ctx.arc(200,200,90,0,Math.PI *2);
+    // ctx.strokeStyle = 'green';
+    // ctx.lineWidth = 10;
+    // ctx.stroke();
+    // ctx.fillStyle='green';
+    // ctx.fill();
+    
+    // ctx.beginPath();
+    // ctx.arc(200,200,110,0,Math.PI *2);
+    // ctx.strokeStyle = 'green';
+    // ctx.lineWidth = 10;
+    // ctx.stroke();
+
+window.onload = function(){
+ 
+    var x = c.width / 2;
+    var y = c.height / 2;
+    var num = Math.PI*2 / 100; //获取每一份转动的角度
+    var speed = 0.1;
+    ctx.beginPath();
+    ctx.arc(200,200,90,0,Math.PI *2);
+    ctx.strokeStyle = 'green';
+    ctx.stroke();
+    // ctx.fillStyle='green';
+    ctx.fill();
+    
+
+
+    function out(n){
+        ctx.save();
+        ctx.strokeStyle= 'yellow';
+        ctx.lineWidth=10;
+        ctx.beginPath();
+        // ctx.arc(x, y, 100, 0, Math.PI*2 +n.num, false);
+        ctx.arc(200, 200, 100 , 0, n*num);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+        // 
+        
+        
+    }
+    //文字
+    function text(n){
+        ctx.save();
+        ctx.strokeStyle = "red";
+        ctx.font = '40px 微软雅黑';
+        ctx.strokeText(n.toFixed(0)+"%", 175, 210);
+        ctx.stroke();
+        ctx.restore();
+    }
+    (function run(){
+            window.requestAnimationFrame(run);
+            ctx.clearRect(0, 0, 200, 200);
+            // whiteCircle();
+            text(speed);
+            out(speed);
+            if(speed > 100) speed = 0;
+            speed += 0.1;
+        }());
+
+}
+</script>
+
+</body>
+</html>
